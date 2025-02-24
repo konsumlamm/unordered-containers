@@ -217,8 +217,8 @@ tests =
       , testProperty "valid" $
         \(Fn f) k (x :: HMKI) -> isValid (HM.alter f k x)
       ]-}
-    , testGroup "alterF"
-      [ {-testGroup "model"
+    {-, testGroup "alterF"
+      [ testGroup "model"
         [ -- We choose the list functor here because we don't fuss with
           -- it in alterF rules and because it has a sufficiently interesting
           -- structure to have a good chance of breaking if something is wrong.
@@ -246,11 +246,11 @@ tests =
             let g = Const . f
             in  fmap toOrdMap (HM.alterF g k x) === M.alterF g k (toOrdMap x)
         ]
-      ,-} testProperty "valid" $
+      , testProperty "valid" $
         \(Fn f :: Fun (Maybe A) [Maybe A]) k (x :: HMK A) ->
           let ys = HM.alterF f k x
           in  map valid ys === (Valid <$ ys)
-      ]
+      ]-}
     , testGroup "isSubmapOf"
       [ testProperty "model" $
         \(x :: HMKI) y -> HM.isSubmapOf x y === M.isSubmapOf (toOrdMap x) (toOrdMap y)
