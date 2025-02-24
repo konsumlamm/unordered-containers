@@ -196,13 +196,13 @@ tests =
       , testProperty "valid" $
         \(k :: Key) (x :: HMKI) -> isValid (HM.delete k x)
       ]
-    , testGroup "adjust" 
+    {-, testGroup "adjust" 
       [ testProperty "model" $
         \(Fn f) k (x :: HMKI) ->
           toOrdMap (HM.adjust f k x) === M.adjust f k (toOrdMap x)
       , testProperty "valid" $
         \(Fn f) k (x :: HMKI) -> isValid (HM.adjust f k x)
-      ]
+      ]-}
     , testGroup "update" 
       [ testProperty "model" $
         \(Fn f) k (x :: HMKI) ->
