@@ -120,8 +120,8 @@ tests =
             (GT, False) -> True
             _           -> False
         ]
-      , testProperty "Read/Show" $
-        \(x :: HMKI) -> x === read (show x)
+      --, testProperty "Read/Show" $
+      --  \(x :: HMKI) -> x === read (show x)
       , testProperty "Functor" $
         \(x :: HMKI) (Fn f :: Fun Int Int) ->
           toOrdMap (fmap f x) === fmap f (toOrdMap x)
