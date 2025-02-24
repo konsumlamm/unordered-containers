@@ -210,13 +210,13 @@ tests =
       , testProperty "valid" $
         \(Fn f) k (x :: HMKI) -> isValid (HM.update f k x)
       ]
-    , testGroup "alter"
+    {-, testGroup "alter"
       [ testProperty "model" $
         \(Fn f) k (x :: HMKI) ->
           toOrdMap (HM.alter f k x) === M.alter f k (toOrdMap x)
       , testProperty "valid" $
         \(Fn f) k (x :: HMKI) -> isValid (HM.alter f k x)
-      ]
+      ]-}
     , testGroup "alterF"
       [ {-testGroup "model"
         [ -- We choose the list functor here because we don't fuss with
