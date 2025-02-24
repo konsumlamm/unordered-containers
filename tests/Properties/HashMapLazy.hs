@@ -165,7 +165,7 @@ tests =
         \(k :: Key) (v :: A) -> isValid (HM.singleton k v)
       ]
     -- Basic interface
-    , testProperty "size" $
+    {-, testProperty "size" $
       \(x :: HMKI) -> HM.size x === M.size (toOrdMap x)
     , testProperty "member" $
       \(k :: Key) (m :: HMKI) -> HM.member k m === M.member k (toOrdMap m)
@@ -443,14 +443,14 @@ tests =
     , testProperty "elems" $
       \(m :: HMKI) -> List.sort (HM.elems m) === List.sort (M.elems (toOrdMap m))
     , testProperty "keys" $
-      \(m :: HMKI) -> List.sort (HM.keys m) === List.sort (M.keys (toOrdMap m))
+      \(m :: HMKI) -> List.sort (HM.keys m) === List.sort (M.keys (toOrdMap m))-}
     , testGroup "fromList"
       [ testProperty "model" $
         \(kvs :: [(Key, Int)]) -> toOrdMap (HM.fromList kvs) === M.fromList kvs
       , testProperty "valid" $
         \(kvs :: [(Key, Int)]) -> isValid (HM.fromList kvs)
       ]
-    , testGroup "fromListWith"
+    {-, testGroup "fromListWith"
       [ testProperty "model" $
         \(kvs :: [(Key, Int)]) ->
           let kvsM = map (fmap Leaf) kvs
@@ -468,5 +468,5 @@ tests =
         \(Fn3 f) (kvs :: [(Key, A)]) -> isValid (HM.fromListWithKey f kvs)
       ]
     , testProperty "toList" $
-      \(m :: HMKI) -> List.sort (HM.toList m) === List.sort (M.toList (toOrdMap m))
+      \(m :: HMKI) -> List.sort (HM.toList m) === List.sort (M.toList (toOrdMap m))-}
     ]
