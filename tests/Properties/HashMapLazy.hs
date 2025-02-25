@@ -28,8 +28,8 @@ import Data.Ord                    (comparing)
 import Test.QuickCheck             (Arbitrary (..), Fun, Property, pattern Fn,
                                     pattern Fn2, pattern Fn3, (===), (==>))
 import Test.QuickCheck.Poly        (A, B, C)
-import Test.Tasty                  (TestTree, testGroup)
-import Test.Tasty.QuickCheck       (testProperty)
+import Test.Tasty                  (TestTree, testGroup, localOption)
+import Test.Tasty.QuickCheck       (testProperty, QuickCheckMaxSize(..))
 import Util.Key                    (Key, incKey, keyToInt)
 
 import qualified Data.Foldable   as Foldable
@@ -447,7 +447,7 @@ tests =
     , testGroup "fromList"
       [ testProperty "model" $
         \(kvs :: [(Key, Int)]) -> toOrdMap (HM.fromList kvs) === M.fromList kvs
-      , testProperty "valid" $
+      , localOption (QuickCheckMaxSize 1000) $ testProperty "valid" $
         \(kvs :: [(Key, Int)]) -> isValid (HM.fromList kvs)
       ]
     {-, testGroup "fromListWith"
